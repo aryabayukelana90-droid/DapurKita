@@ -340,7 +340,7 @@ function showAuthChoices(){ $('authChoices').hidden=false; $('authForm').hidden=
 function openEmailAuth(){authMethod='email';otpPending=false;$('authChoices').hidden=true;$('authForm').hidden=false;$('authTitle').textContent='Lanjutkan dengan email';$('authSubtitle').textContent='Masukkan email aktif. Kami akan mengirim kode OTP.';$('identityLabel').textContent='Alamat email';$('authEmail').type='email';$('authEmail').placeholder='nama@email.com';$('authEmail').autocomplete='email';$('authOtp').inputMode='numeric';$('authOtp').value='';$('otpWrap').hidden=true;$('authOtp').required=false;$('authNameWrap').hidden=false;$('authName').required=false;$('authSubmit').textContent='Kirim kode OTP →';}
 function finishLogin(user){localStorage.setItem('dapur_session',JSON.stringify(user));document.body.classList.add('authenticated');$('authScreen').classList.add('hidden');$('userPill').textContent='👤 '+(user.name||user.email?.split('@')[0]||user.phone||'Pengguna');}
 $('emailChoice').addEventListener('click',openEmailAuth);$('authBack').addEventListener('click',showAuthChoices);
-async function oauth(provider){if(!supabaseClient){showToast('Koneksi Supabase belum siap. Periksa URL dan Publishable Key.');return}try{const {error}=await supabaseClient.auth.signInWithOAuth({provider,options:{redirectTo:location.href}});if(error)throw error}catch(e){showToast(e.message||'Login provider belum tersedia.')} }
+async function oauth(provider){if(!supabaseClient){showToast('Koneksi Supabase belum siap. Periksa URL dan Publishable Key.');return}try{const cleanRedirectUrl=window.location.origin+window.location.pathname;const {error}=await supabaseClient.auth.signInWithOAuth({provider,options:{redirectTo:cleanRedirectUrl}});if(error)throw error}catch(e){showToast(e.message||'Login provider belum tersedia.')} }
 $('googleAuth').addEventListener('click',()=>oauth('google'));$('appleAuth').addEventListener('click',()=>oauth('apple'));
 $('phoneAuth').addEventListener('click',()=>{authMethod='phone';otpPending=false;$('authChoices').hidden=true;$('authForm').hidden=false;$('authTitle').textContent='Masuk dengan nomor telepon';$('authSubtitle').textContent='Masukkan nomor dengan kode negara, misalnya +62812…';$('identityLabel').textContent='Nomor telepon';$('authEmail').type='tel';$('authEmail').placeholder='+6281234567890';$('authEmail').autocomplete='tel';$('authNameWrap').hidden=true;$('authName').required=false;$('otpWrap').hidden=true;$('authOtp').required=false;$('authSubmit').textContent='Kirim kode OTP →';});
 $('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!supabaseClient){showToast('Koneksi Supabase belum siap. Periksa konfigurasi URL dan Publishable Key.');return}const identity=$('authEmail').value.trim(),name=$('authName').value.trim();try{
@@ -350,7 +350,19 @@ $('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!supabas
  const token=$('authOtp').value.trim();if(!token){showToast('Masukkan kode OTP terlebih dahulu.');return}const verify=authMethod==='email'?{email:identity,token,type:'email'}:{phone:identity,token,type:'sms'};const {data,error}=await supabaseClient.auth.verifyOtp(verify);if(error)throw error;const user=data.user;finishLogin({email:user?.email,phone:user?.phone,name:user?.user_metadata?.full_name||name});showToast('Verifikasi berhasil. Selamat datang di DapurKita!');
  }catch(err){showToast(err.message||'Autentikasi gagal. Periksa kembali data kamu.')}});
 $('logoutBtn').addEventListener('click',async()=>{if(supabaseClient)await supabaseClient.auth.signOut();localStorage.removeItem('dapur_session');document.body.classList.remove('authenticated');$('authScreen').classList.remove('hidden');showAuthChoices()});
-if(supabaseClient){supabaseClient.auth.getSession().then(({data})=>{const u=data.session?.user;if(u)finishLogin({email:u.email,name:u.user_metadata?.full_name||u.email.split('@')[0]})})}
+if(supabaseClient){
+ // Pulihkan sesi yang sudah ada dan tangani sesi baru setelah OAuth Google kembali ke website.
+ supabaseClient.auth.onAuthStateChange((event,session)=>{
+  const u=session?.user;
+  if(u){finishLogin({email:u.email,phone:u.phone,name:u.user_metadata?.full_name||u.user_metadata?.name||u.email?.split('@')[0]||'Pengguna'});}
+  else if(event==='SIGNED_OUT'){localStorage.removeItem('dapur_session');document.body.classList.remove('authenticated');$('authScreen').classList.remove('hidden');showAuthChoices();}
+ });
+ supabaseClient.auth.getSession().then(({data,error})=>{
+  if(error){console.error('Gagal memeriksa sesi Supabase:',error);return;}
+  const u=data.session?.user;
+  if(u)finishLogin({email:u.email,phone:u.phone,name:u.user_metadata?.full_name||u.user_metadata?.name||u.email?.split('@')[0]||'Pengguna'});
+ }).catch(err=>console.error('Gagal memulihkan sesi login:',err));
+}
 loadUserData();
 if(!localStorage.getItem("dapur_plan_dates")&&localStorage.getItem("dapur_plan")){try{const legacy=JSON.parse(localStorage.getItem("dapur_plan")||"{}"),migrated={},ds=weekDates();ds.forEach((d,i)=>{const old=legacy[dayNamesLong[i]];if(old&&(old.main||old.extra))migrated[dateKey(d)]=old});localStorage.setItem("dapur_plan_dates",JSON.stringify(migrated))}catch(e){}}
 renderRecipes();renderPlanner();updateLiveClock();$("footerYear").textContent=jakartaNow().getFullYear();
