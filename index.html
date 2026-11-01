@@ -41,15 +41,15 @@ body.dark .auth-screen{background:radial-gradient(ellipse at 15% 15%,#244631,tra
 .recipe-image{height:190px;display:block;overflow:hidden;background:#e8eee6;font-size:0}
 .recipe-image .food-photo{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
 .recipe-card:hover .food-photo{transform:scale(1.06)}
-.recipe-image .tag{z-index:1}
+.recipe-image .tag{z-index:1}.edit-photo-btn{position:absolute;left:10px;bottom:10px;z-index:2;border:1px solid #ffffffd9;background:#ffffffed;color:#176b4d;border-radius:9px;padding:6px 9px;font-size:.72rem;font-weight:800;box-shadow:0 3px 10px #00000012}.edit-photo-btn:hover{background:#176b4d;color:#fff}.image-edit-modal{width:min(520px,100%)}.image-edit-preview{width:100%;height:230px;object-fit:cover;border-radius:14px;background:#eef3ec;border:1px solid var(--line)}.image-edit-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
 .recipe-detail-hero{grid-template-columns:240px 1fr;min-height:250px;background:#e9f1e8}
 .detail-food{height:190px;overflow:hidden;background:#fff;border-radius:20px;box-shadow:0 12px 28px #1c38221a}
 .detail-food img{width:100%;height:100%;object-fit:cover;display:block}
-@media(max-width:680px){.recipe-image{height:145px}.recipe-detail-hero{grid-template-columns:100px 1fr;min-height:0}.detail-food{height:100px}}
+@media(max-width:680px){.edit-photo-btn{font-size:.68rem;padding:5px 7px}.image-edit-preview{height:190px}.recipe-image{height:145px}.recipe-detail-hero{grid-template-columns:100px 1fr;min-height:0}.detail-food{height:100px}}
 #newImageFile{padding:12px;background:#f7faf6;border:1px dashed #9eb8a4;border-radius:12px;width:100%}#newImagePreview[hidden]{display:none}.auth-field input[inputmode="numeric"]{letter-spacing:.28em;font-size:1.2rem;text-align:center}
 
 .auth-choice{display:grid;gap:11px}.auth-provider{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:12px 14px;border:1px solid #dfe7de;border-radius:12px;background:#fff;color:#26352b;font-weight:750}.auth-provider:hover{background:#f6faf6;border-color:#a8c6ae}.provider-mark{width:22px;text-align:center;font-size:1.05rem}.auth-or{display:flex;align-items:center;gap:12px;color:#89958c;font-size:.85rem;margin:3px 0}.auth-or:before,.auth-or:after{content:"";height:1px;background:#e5ebe5;flex:1}.auth-back{border:0;background:transparent;color:#176b4d;font-weight:750;padding:8px}.auth-form[hidden],.auth-choice[hidden]{display:none}body.dark .auth-provider{background:#17251c;color:#e8f0e9;border-color:#344638}
-</style>
+.weekly-summary-wrap{margin-top:18px}.weekly-summary-wrap h4{margin:0 0 10px;font-size:.95rem}.weekly-schedule{display:grid;gap:8px}.weekly-schedule-row{display:grid;grid-template-columns:125px 1fr;gap:10px;padding:10px;border:1px solid var(--line);border-radius:11px;font-size:.85rem}.weekly-schedule-row strong{color:var(--green)}.weekly-schedule-row span{color:var(--muted)}.week-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 14px;flex-wrap:wrap}.week-nav button{padding:8px 11px;font-size:.8rem}.week-nav strong{font-size:.9rem;color:var(--green)}.day-card.today{border:2px solid var(--green);background:#f1f8ef}.day-title small{font-weight:600;color:var(--muted);font-size:.75rem}.today-menu-content{display:grid;gap:9px}.today-menu-item{border:1px solid var(--line);border-radius:12px;padding:11px;background:var(--card)}.today-menu-item b{display:block;color:var(--green);font-size:.78rem;margin-bottom:4px}.today-menu-item span{font-weight:750}.today-menu-empty{border:1px dashed var(--line);border-radius:12px;padding:15px;color:var(--muted);font-size:.9rem}.live-clock{font-variant-numeric:tabular-nums;font-weight:750;color:var(--green)}body.dark .day-card.today{background:#1e3828}</style>
 </head>
 <body>
 <div class="auth-screen" id="authScreen"><div class="auth-shell"><section class="auth-art"><div><div class="auth-badge"><span style="font-size:28px">🥬</span> DapurKita</div><h1>Dapur rapi,<br>hidup lebih mudah.</h1><p>Temukan inspirasi masakan, atur menu keluarga, dan simpan resep favoritmu dalam satu tempat.</p></div><div class="auth-points"><span>✓ Resep rumahan yang mudah diikuti</span><span>✓ Perencana menu 7 hari</span><span>✓ Daftar belanja otomatis</span></div></section><section class="auth-form-wrap"><h2 id="authTitle">Masuk atau daftar</h2><p id="authSubtitle">Pilih cara untuk melanjutkan ke DapurKita.</p>
@@ -68,7 +68,7 @@ body.dark .auth-screen{background:radial-gradient(ellipse at 15% 15%,#244631,tra
 <section class="hero" id="beranda"><div class="container hero-grid">
  <div><span class="eyebrow">🌿 DARI DAPUR, UNTUK KELUARGA</span><h1>Masak enak jadi lebih <span>mudah.</span></h1><p>Temukan inspirasi masakan rumahan, atur menu seminggu, dan siapkan belanja tanpa bingung. Semua dalam satu dapur digital.</p>
   <form class="searchbox" id="heroSearch"><span>🔎</span><input id="searchInput" type="search" placeholder="Cari resep atau bahan, mis. ayam, telur..." aria-label="Cari resep"><button class="primary" type="submit">Cari Resep</button></form>
-  <div class="hero-meta"><span>🍲 <b>36+</b> inspirasi resep</span><span>🗓️ <b>7 hari</b> rencana menu</span><span>💚 Gratis digunakan</span></div>
+  <div class="hero-meta"><span>🍲 <b>36+</b> inspirasi resep</span><span>🗓️ <b>7 hari</b> rencana menu</span><span id="liveDateTime">🕒 Memuat waktu…</span></div>
  </div>
  <div class="hero-art" aria-label="Ilustrasi makanan"><div class="food-orbit"><div class="food-main"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=85" alt="Hidangan sehat tersaji" loading="eager"></div></div><div class="float-card fc1">⭐ Favorit keluarga<small>Resep pilihan setiap hari</small></div><div class="float-card fc2">🛒 Belanja lebih teratur<small>Daftar otomatis dari menu</small></div></div>
 </div></section>
@@ -85,8 +85,8 @@ body.dark .auth-screen{background:radial-gradient(ellipse at 15% 15%,#244631,tra
 </div></section>
 <section class="section planner-section" id="planner"><div class="container">
  <div class="section-head"><div><span class="eyebrow">BIAR NGGAK BINGUNG MAU MASAK APA</span><h2>Rencanakan menu mingguan</h2><p>Pilih menu untuk setiap hari, daftar belanja akan dibuat otomatis.</p></div></div>
- <div class="planner-layout"><div class="panel"><h3>🗓️ Menu 7 hari</h3><p class="subtle">Pilih menu utama dan, jika mau, menu tambahan.</p><div class="week-grid" id="weekGrid"></div><div class="shopping-actions"><button class="primary" id="makeList">🛒 Buat daftar belanja</button><button class="secondary" id="clearPlan">Reset menu</button></div></div>
- <div class="panel"><h3>🧺 Daftar belanja</h3><p class="subtle" id="shoppingSub">Pilih menu terlebih dahulu untuk menyusun belanjaan.</p><ul class="shopping-list" id="shoppingList"><li style="color:var(--muted)">Belum ada bahan. Yuk, rencanakan menu!</li></ul><div class="shopping-actions"><button class="secondary" id="copyList">Salin daftar</button><button class="secondary" id="printList">Cetak</button></div></div></div>
+ <div class="planner-layout"><div class="panel"><h3>🗓️ Menu 7 hari</h3><p class="subtle" id="weekRangeLabel">Rencana menu mengikuti tanggal minggu berjalan.</p><div class="week-nav"><button class="secondary" type="button" id="prevWeek">← Minggu sebelumnya</button><strong id="weekMonthLabel"></strong><button class="secondary" type="button" id="nextWeek">Minggu berikutnya →</button></div><div class="week-grid" id="weekGrid"></div><div class="weekly-summary-wrap"><h4>📋 Ringkasan menu berdasarkan tanggal</h4><div id="weeklySchedule" class="weekly-schedule"></div></div><div class="shopping-actions"><button class="primary" id="makeList">🛒 Buat daftar belanja</button><button class="secondary" id="clearPlan">Reset menu</button></div></div>
+ <div class="panel today-menu-panel"><h3>📌 Menu sesuai tanggal hari ini</h3><p class="subtle" id="todayMenuDate">Memuat tanggal…</p><div id="todayMenuContent" class="today-menu-content"></div><div style="height:16px"></div><h3>🧺 Daftar belanja</h3><p class="subtle" id="shoppingSub">Pilih menu terlebih dahulu untuk menyusun belanjaan.</p><ul class="shopping-list" id="shoppingList"><li style="color:var(--muted)">Belum ada bahan. Yuk, rencanakan menu!</li></ul><div class="shopping-actions"><button class="secondary" id="copyList">Salin daftar</button><button class="secondary" id="printList">Cetak</button></div></div></div>
 </div></section>
 <section class="section" id="fitur"><div class="container"><div class="section-head"><div><span class="eyebrow">TEMAN ANDALAN DI DAPUR</span><h2>Semua yang kamu butuhkan</h2><p>Dirancang supaya siapa pun bisa mulai memasak dan merencanakan menu.</p></div></div>
 <div class="feature-grid">
@@ -99,7 +99,7 @@ body.dark .auth-screen{background:radial-gradient(ellipse at 15% 15%,#244631,tra
 </div></div></section>
 <section class="section" style="padding-top:0"><div class="container"><div class="newsletter"><div><h2>Masak hari ini, lebih tenang besok. 💚</h2><p>Simpan DapurKita sebagai teman merencanakan menu keluarga.</p></div><form id="newsletterForm"><input type="email" id="emailInput" placeholder="Alamat email (opsional)" aria-label="Alamat email"><button type="submit">Mulai sekarang ↗</button></form></div></div></section>
 </main>
-<footer><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="#beranda"><span class="brandmark">🥬</span>DapurKita</a><p>Inspirasi resep dan perencanaan menu untuk keseharian yang lebih praktis, hemat, dan menyenangkan.</p></div><div class="footer-links"><a href="#resep">Jelajahi Resep</a><a href="#planner">Menu Mingguan</a><a href="#fitur">Tentang Fitur</a><a href="#beranda">Kembali ke atas ↑</a></div></div><div class="copyright"><span>© 2026 DapurKita. Dibuat dengan 💚 di Indonesia.</span><span>Resep rumahan, langkah sederhana.</span></div></div></footer>
+<footer><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="#beranda"><span class="brandmark">🥬</span>DapurKita</a><p>Inspirasi resep dan perencanaan menu untuk keseharian yang lebih praktis, hemat, dan menyenangkan.</p></div><div class="footer-links"><a href="#resep">Jelajahi Resep</a><a href="#planner">Menu Mingguan</a><a href="#fitur">Tentang Fitur</a><a href="#beranda">Kembali ke atas ↑</a></div></div><div class="copyright"><span>© <span id="footerYear">2026</span> DapurKita. Dibuat dengan 💚 di Indonesia.</span><span>Resep rumahan, langkah sederhana.</span></div></div></footer>
 <div class="modal-backdrop" id="recipeModal" role="dialog" aria-modal="true" aria-label="Detail resep"><div class="modal recipe-detail-modal"><div class="recipe-detail-hero" id="modalEmoji"><button class="modal-close" id="closeModal" aria-label="Tutup">×</button><span>🍛</span></div><div class="modal-content" id="modalContent"></div></div></div>
 <div class="modal-backdrop" id="addModal" role="dialog" aria-modal="true" aria-label="Tambah resep"><div class="modal"><div class="modal-content"><button class="modal-close" id="closeAdd" style="float:right;position:static">×</button><h2>✨ Tambahkan resep baru</h2><p>Masukkan resep andalanmu. Foto dan resep versi ini disimpan di browser perangkat ini. Untuk publik multi-pengguna, hubungkan Supabase Storage dan database.</p><form id="addRecipeForm" class="form-grid">
 <div class="field"><label for="newName">Nama resep *</label><input id="newName" required placeholder="Contoh: Tumis kangkung"></div>
@@ -110,12 +110,13 @@ body.dark .auth-screen{background:radial-gradient(ellipse at 15% 15%,#244631,tra
 <div class="field full"><label for="newIngredients">Bahan-bahan * (pisahkan dengan koma)</label><textarea id="newIngredients" rows="3" required placeholder="2 butir telur, 1 siung bawang putih, garam"></textarea></div>
 <div class="field full"><label for="newSteps">Langkah memasak * (pisahkan tiap langkah dengan baris baru)</label><textarea id="newSteps" rows="4" required placeholder="Siapkan bahan.\nPanaskan minyak.\nMasak hingga matang."></textarea></div>
 <div class="field full"><button class="primary" type="submit">Simpan resep</button></div></form></div></div></div>
+<div class="modal-backdrop" id="imageEditModal" role="dialog" aria-modal="true" aria-label="Ganti foto resep"><div class="modal image-edit-modal"><div class="modal-content"><button class="modal-close" id="closeImageEdit" style="float:right;position:static">×</button><h2>📷 Ganti foto resep</h2><p id="imageEditRecipeName">Pilih foto baru untuk resep ini.</p><img id="imageEditPreview" class="image-edit-preview" alt="Pratinjau foto resep"><div class="field" style="margin-top:14px"><label for="editImageFile">Pilih gambar baru</label><input id="editImageFile" type="file" accept="image/png,image/jpeg,image/webp"></div><small style="display:block;color:var(--muted);margin-top:8px">Gunakan foto JPG, PNG, atau WebP maksimal 8 MB. Perubahan disimpan di browser perangkat ini.</small><div class="image-edit-actions"><button class="primary" id="saveRecipeImage" type="button">Simpan foto</button><button class="secondary" id="cancelImageEdit" type="button">Batal</button></div></div></div></div>
 <div class="toast" id="toast" role="status"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 // Isi setelah membuat project Supabase. Jangan pernah menaruh service_role key di frontend.
-const SUPABASE_URL = "PASTE_SUPABASE_PROJECT_URL_DI_SINI";
-const SUPABASE_ANON_KEY = "PASTE_SUPABASE_ANON_PUBLIC_KEY_DI_SINI";
+const SUPABASE_URL = "https://nmrhwpiudbohirtpwtfk.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_N1kSu48XcebAJfXMktHs8Q_aF4Ho98_";
 const supabaseReady = !!(window.supabase && SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && !SUPABASE_ANON_KEY.includes("PASTE_"));
 const supabaseClient = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const baseRecipes = [
@@ -156,7 +157,17 @@ const baseRecipes = [
 {id:35,name:"Salad Buah Yogurt",category:"Pencuci mulut",emoji:"🍓",time:15,servings:3,rating:4.7,desc:"Potongan buah segar dengan saus yogurt yang creamy.",ingredients:["1 apel","1 pir","100 g anggur","100 g stroberi","150 g yogurt plain","2 sdm madu","Keju parut (opsional)"],steps:["Cuci semua buah dan potong ukuran sekali suap.","Campur yogurt dengan madu hingga rata.","Masukkan buah ke dalam mangkuk.","Tuang saus yogurt dan aduk perlahan.","Dinginkan sebentar dan sajikan."]},
 {id:36,name:"Klepon",category:"Pencuci mulut",emoji:"🟢",time:35,servings:4,rating:4.8,desc:"Kue tradisional kenyal berisi gula merah dengan kelapa parut.",ingredients:["200 g tepung ketan","Air pandan secukupnya","100 g gula merah","100 g kelapa parut","Sejumput garam"],steps:["Campur tepung ketan dengan air pandan sedikit demi sedikit.","Ambil adonan, pipihkan, isi gula merah, lalu bulatkan.","Rebus dalam air mendidih hingga klepon mengapung.","Angkat dan tiriskan.","Gulingkan ke kelapa parut yang sudah dikukus dengan sedikit garam."]}
 ];
-const days=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
+const dayNamesLong=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
+let plannerWeekOffset=0;
+const dateFmt=new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",weekday:"long",day:"numeric",month:"long",year:"numeric"});
+const shortDateFmt=new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",day:"numeric",month:"short"});
+function jakartaNow(){return new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Jakarta"}))}
+function dateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function startOfWeek(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate(),12);x.setDate(x.getDate()-(x.getDay()+6)%7);return x}
+function weekDates(){const start=startOfWeek(jakartaNow());start.setDate(start.getDate()+plannerWeekOffset*7);return Array.from({length:7},(_,i)=>{const d=new Date(start);d.setDate(start.getDate()+i);return d})}
+let lastLiveDateKey="";
+function updateLiveClock(){const now=jakartaNow(),currentKey=dateKey(now);if(lastLiveDateKey&&lastLiveDateKey!==currentKey)renderPlanner();lastLiveDateKey=currentKey;const el=$("liveDateTime");if(el)el.innerHTML=`🕒 <span class="live-clock">${new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(new Date())} WIB</span>`;const td=$("todayMenuDate");if(td)td.textContent=dateFmt.format(now)+" • WIB";renderTodayMenu()}
+setInterval(updateLiveClock,1000);
 let recipes=[...baseRecipes], currentCategory="Semua", searchTerm="", activeRecipe=null;
 const $=id=>document.getElementById(id);
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
@@ -181,30 +192,54 @@ const FOOD_PHOTOS = [
 function photoFor(r){
  if(r.image) return r.image;
  const n=(r.name||"").toLowerCase();
- if(/jus|es teh|kopi|cendol|jeruk|minuman/.test(n)) return FOOD_PHOTOS[10];
- if(/puding|klepon|pisang cokelat|salad buah|dessert/.test(n)) return FOOD_PHOTOS[9];
- if(/sayur|pecel|kangkung|buncis|capcay|gado/.test(n)) return FOOD_PHOTOS[1];
- if(/soto|sup|rawon|sayur asem|bakso/.test(n)) return FOOD_PHOTOS[4];
- if(/nasi goreng|rendang|ayam|mie|sate|opor|nasi/.test(n)) return FOOD_PHOTOS[3];
- if(/roti|pancake|telur|bubur|sarapan/.test(n)) return FOOD_PHOTOS[6];
- if(/tahu|tempe|martabak|cireng|risoles|mendoan|singkong/.test(n)) return FOOD_PHOTOS[7];
- return FOOD_PHOTOS[(Number(r.id)||1)%FOOD_PHOTOS.length];
+ // Prioritaskan jenis hidangan yang spesifik sebelum kategori yang lebih umum.
+ if(/soto|sup|rawon|sayur asem|bakso|bubur/.test(n))
+   return "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85";
+ if(/jus|es teh|kopi|cendol|jeruk|minuman|smoothie/.test(n))
+   return "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=85";
+ if(/puding|klepon|pisang cokelat|salad buah|dessert|kolak|pancake/.test(n))
+   return "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85";
+ if(/capcay|sayur|pecel|kangkung|buncis|gado|tumis/.test(n))
+   return "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85";
+ if(/nasi goreng|rendang|ayam|mie|sate|opor|nasi|ikan/.test(n))
+   return "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85";
+ if(/roti|telur|sarapan|sandwich/.test(n))
+   return "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=85";
+ if(/tahu|tempe|martabak|cireng|risoles|mendoan|singkong|goreng/.test(n))
+   return "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85";
+ return FOOD_PHOTOS[0];
 }
 function renderRecipes(){
  const favs=getFavorites();let items=recipes.filter(r=>(currentCategory==="Semua"||(currentCategory==="Favorit"?favs.includes(r.id):r.category===currentCategory))&&(!searchTerm||(r.name+" "+r.desc+" "+r.category+" "+r.ingredients.join(" ")).toLowerCase().includes(searchTerm.toLowerCase())));
  $("recipeCount").textContent=recipes.length+" resep";$("favoriteCount").textContent=favs.length+" resep";
- $("recipeGrid").innerHTML=items.length?items.map(r=>`<article class="recipe-card"><div class="recipe-image"><img class="food-photo" src="${escapeHTML(photoFor(r))}" alt="Foto ${escapeHTML(r.name)}" loading="lazy" onerror="this.onerror=null;this.src='${FOOD_PHOTOS[0]}'"><span class="tag">${escapeHTML(r.category)}</span><button class="heart ${favs.includes(r.id)?"saved":""}" data-fav="${r.id}" aria-label="Simpan favorit">${favs.includes(r.id)?"♥":"♡"}</button></div><div class="recipe-body"><h3>${escapeHTML(r.name)}</h3><p>${escapeHTML(r.desc||"Resep praktis untuk menemani hari.")}</p><div class="recipe-info"><span>◷ ${r.time} menit</span><span>⭐ <b>${r.rating||"4.8"}</b></span></div><button class="textlink" style="padding:12px 0 0" data-open="${r.id}">Lihat resep →</button></div></article>`).join(""):`<div class="empty"><div style="font-size:35px">🍽️</div><h3>Resep belum ditemukan</h3><p>Coba kata kunci atau kategori lain, ya.</p><button class="secondary" id="resetSearch">Tampilkan semua resep</button></div>`;
+ $("recipeGrid").innerHTML=items.length?items.map(r=>`<article class="recipe-card"><div class="recipe-image"><img class="food-photo" src="${escapeHTML(photoFor(r))}" alt="Foto ${escapeHTML(r.name)}" loading="lazy" onerror="this.onerror=null;this.src='${FOOD_PHOTOS[0]}'"><span class="tag">${escapeHTML(r.category)}</span><button class="edit-photo-btn" type="button" data-edit-photo="${r.id}">✎ Ganti foto</button><button class="heart ${favs.includes(r.id)?"saved":""}" data-fav="${r.id}" aria-label="Simpan favorit">${favs.includes(r.id)?"♥":"♡"}</button></div><div class="recipe-body"><h3>${escapeHTML(r.name)}</h3><p>${escapeHTML(r.desc||"Resep praktis untuk menemani hari.")}</p><div class="recipe-info"><span>◷ ${r.time} menit</span><span>⭐ <b>${r.rating||"4.8"}</b></span></div><button class="textlink" style="padding:12px 0 0" data-open="${r.id}">Lihat resep →</button></div></article>`).join(""):`<div class="empty"><div style="font-size:35px">🍽️</div><h3>Resep belum ditemukan</h3><p>Coba kata kunci atau kategori lain, ya.</p><button class="secondary" id="resetSearch">Tampilkan semua resep</button></div>`;
 }
 function colorFor(id){const colors=["linear-gradient(135deg,#e2f0df,#f6e4c9)","linear-gradient(135deg,#f8e4c9,#f5d9d3)","linear-gradient(135deg,#e3e9d1,#f6e8cf)","linear-gradient(135deg,#d9e9ef,#f3e4c9)","linear-gradient(135deg,#f1dce5,#f7e8c9)"];return colors[(Number(id)||1)%colors.length]}
-function renderPlanner(){
- let plan={};try{plan=JSON.parse(localStorage.getItem("dapur_plan")||"{}")}catch(e){}
- const options=recipes.map(r=>`<option value="${r.id}">${escapeHTML(r.name)}</option>`).join("");
- $("weekGrid").innerHTML=days.map(day=>`<div class="day-card"><div class="day-title"><span>${day}</span><span>🍽️</span></div><select data-day="${day}" data-meal="main" aria-label="Menu utama ${day}"><option value="">Pilih menu utama</option>${options}</select><select data-day="${day}" data-meal="extra" aria-label="Menu tambahan ${day}"><option value="">Menu tambahan (opsional)</option>${options}</select></div>`).join("");
- document.querySelectorAll("#weekGrid select").forEach(s=>{s.value=(plan[s.dataset.day]||{})[s.dataset.meal]||"";s.addEventListener("change",savePlan)});
+function readPlan(){try{return JSON.parse(localStorage.getItem("dapur_plan_dates")||"{}") }catch(e){return {}}}
+function savePlan(){
+ const plan=readPlan();
+ document.querySelectorAll("#weekGrid select").forEach(sel=>{
+   const date=sel.dataset.date, meal=sel.dataset.meal;
+   if(!date || !meal) return;
+   plan[date] ??= {};
+   if(sel.value) plan[date][meal]=String(sel.value);
+   else delete plan[date][meal];
+   if(!plan[date].main && !plan[date].extra) delete plan[date];
+ });
+ try{
+   localStorage.setItem("dapur_plan_dates",JSON.stringify(plan));
+   renderWeeklySchedule();
+   renderTodayMenu();
+ }catch(err){
+   showToast("Menu belum tersimpan. Ruang penyimpanan browser mungkin penuh.");
+ }
 }
-function savePlan(){const plan={};document.querySelectorAll("#weekGrid select").forEach(s=>{plan[s.dataset.day]??={};plan[s.dataset.day][s.dataset.meal]=s.value});localStorage.setItem("dapur_plan",JSON.stringify(plan));}
+function renderPlanner(){const dates=weekDates(),plan=readPlan(),todayKey=dateKey(jakartaNow()),opts=recipes.map(r=>`<option value="${r.id}">${escapeHTML(r.name)}</option>`).join("");const first=dates[0],last=dates[6];$("weekRangeLabel").textContent=`Atur menu berdasarkan tanggal ${dateFmt.format(first)} sampai ${dateFmt.format(last)}.`;$("weekMonthLabel").textContent=new Intl.DateTimeFormat("id-ID",{month:"long",year:"numeric"}).format(first);$("weekGrid").innerHTML=dates.map((date,i)=>{const key=dateKey(date),saved=plan[key]||{};return `<div class="day-card ${key===todayKey?"today":""}"><div class="day-title"><span>${dayNamesLong[i]} ${shortDateFmt.format(date)}</span><small>${key===todayKey?"Hari ini":""}</small></div><select data-date="${key}" data-meal="main" aria-label="Menu utama ${dayNamesLong[i]} ${shortDateFmt.format(date)}"><option value="">Pilih menu utama</option>${opts}</select><select data-date="${key}" data-meal="extra" aria-label="Menu tambahan ${dayNamesLong[i]} ${shortDateFmt.format(date)}"><option value="">Menu tambahan (opsional)</option>${opts}</select></div>`}).join("");document.querySelectorAll("#weekGrid select").forEach(sel=>{sel.value=(plan[sel.dataset.date]||{})[sel.dataset.meal]||"";sel.addEventListener("change",savePlan)});renderWeeklySchedule();renderTodayMenu()}
+function renderWeeklySchedule(){const box=$("weeklySchedule");if(!box)return;const plan=readPlan();box.innerHTML=weekDates().map((d,i)=>{const key=dateKey(d),v=plan[key]||{},a=recipes.find(r=>r.id===Number(v.main)),b=recipes.find(r=>r.id===Number(v.extra));const names=[a&&a.name,b&&b.name].filter(Boolean);return `<div class="weekly-schedule-row"><strong>${dayNamesLong[i]}, ${shortDateFmt.format(d)}</strong><span>${names.length?names.map(escapeHTML).join(" • "):"Belum ada menu"}</span></div>`}).join("")}
+function renderTodayMenu(){const box=$("todayMenuContent");if(!box)return;const key=dateKey(jakartaNow()),plan=readPlan()[key]||{},main=recipes.find(r=>r.id===Number(plan.main)),extra=recipes.find(r=>r.id===Number(plan.extra)),rows=[];if(main)rows.push(`<div class="today-menu-item"><b>MENU UTAMA</b><span>${escapeHTML(main.name)}</span><div class="subtle" style="margin:4px 0 0">${escapeHTML(main.desc||"")}</div><button class="textlink" data-open="${main.id}" style="padding:8px 0 0">Lihat resep →</button></div>`);if(extra)rows.push(`<div class="today-menu-item"><b>MENU TAMBAHAN</b><span>${escapeHTML(extra.name)}</span><div class="subtle" style="margin:4px 0 0">${escapeHTML(extra.desc||"")}</div><button class="textlink" data-open="${extra.id}" style="padding:8px 0 0">Lihat resep →</button></div>`);box.innerHTML=rows.length?rows.join(""):`<div class="today-menu-empty">Belum ada menu yang dijadwalkan untuk hari ini. Pilih menu pada tanggal hari ini di bagian Menu 7 hari.</div>`}
+$("prevWeek").addEventListener("click",()=>{plannerWeekOffset--;renderPlanner()});$("nextWeek").addEventListener("click",()=>{plannerWeekOffset++;renderPlanner()});
 function makeShoppingList(){
- const plan=JSON.parse(localStorage.getItem("dapur_plan")||"{}");const ids=[...new Set(Object.values(plan).flatMap(v=>[v.main,v.extra]).filter(Boolean).map(Number))];const selected=recipes.filter(r=>ids.includes(r.id));let ingredients={};
+ const plan=readPlan();const ids=[...new Set(weekDates().map(d=>plan[dateKey(d)]||{}).flatMap(v=>[v.main,v.extra]).filter(Boolean).map(Number))];const selected=recipes.filter(r=>ids.includes(r.id));let ingredients={};
  selected.forEach(r=>r.ingredients.forEach(i=>{const key=i.trim();ingredients[key]=(ingredients[key]||0)+1}));
  const list=Object.keys(ingredients).sort((a,b)=>a.localeCompare(b,"id"));
  $("shoppingSub").textContent=list.length?`${list.length} bahan dari ${selected.length} resep pilihan.`:"Pilih menu terlebih dahulu untuk menyusun belanjaan.";
@@ -220,7 +255,7 @@ function openRecipe(id){
   $('modalContent').innerHTML=`<div class="detail-layout"><section class="detail-panel"><h3>🧺 Siapkan bahan</h3><p class="hint">Centang bahan yang sudah tersedia di dapurmu.</p><div class="serving-control"><span>Jumlah porsi</span><div><button id="servingMinus" type="button" aria-label="Kurangi porsi">−</button><strong>${Math.round((r.servings||2)*servingScale)}</strong><button id="servingPlus" type="button" aria-label="Tambah porsi">+</button></div></div><div class="ingredient-list">${r.ingredients.map((i,n)=>`<label class="ingredient-row"><input type="checkbox" class="ingredient-check"><span>${escapeHTML(scaleIngredient(i,servingScale))}</span></label>`).join('')}</div><div class="detail-progress"><span id="ingredientProgress"></span></div><small id="ingredientProgressText" style="color:var(--muted)">0 dari ${r.ingredients.length} bahan disiapkan</small></section><section class="detail-panel"><h3>👩‍🍳 Langkah memasak</h3><p class="hint">Ikuti langkah satu per satu. Tandai selesai saat kamu sudah melakukannya.</p><div class="step-list">${r.steps.map((step,n)=>`<label class="cook-step"><input type="checkbox" class="step-check" style="accent-color:var(--green);margin-top:10px"><span class="step-num">${String(n+1).padStart(2,'0')}</span><p>${escapeHTML(step)}</p></label>`).join('')}</div><div class="detail-progress"><span id="stepProgress"></span></div><small id="stepProgressText" style="color:var(--muted)">0 dari ${r.steps.length} langkah selesai</small></section></div><div class="detail-actions"><button class="primary" id="modalFav">${fav?'♥ Tersimpan di favorit':'♡ Simpan favorit'}</button><button class="secondary" id="modalPlan">＋ Tambahkan ke menu mingguan</button><button class="secondary" id="modalPrint">🖨 Cetak resep</button></div>`;
   $('closeDetail').onclick=closeModals;
   $('modalFav').onclick=()=>toggleFavorite(r.id);
-  $('modalPlan').onclick=()=>{location.hash='#planner';const sel=document.querySelector('#weekGrid select[data-day="Senin"][data-meal="main"]');if(sel){sel.value=String(r.id);savePlan()}closeModals();showToast('Resep ditambahkan ke menu hari Senin.')};
+  $('modalPlan').onclick=()=>{location.hash='#planner';const today=dateKey(jakartaNow());let p=readPlan();p[today]??={};p[today].main=String(r.id);localStorage.setItem("dapur_plan_dates",JSON.stringify(p));renderPlanner();closeModals();showToast("Resep ditambahkan ke menu hari ini.")};
   $('modalPrint').onclick=()=>{const w=window.open('','_blank');if(!w){showToast('Izinkan pop-up untuk mencetak resep.');return}w.document.write(`<html><head><title>${escapeHTML(r.name)}</title><style>body{font:16px Arial;max-width:800px;margin:40px auto;line-height:1.6}h1{color:#176b4d}h2{margin-top:28px}
 /* Professional food photography refresh */
 .food-main{width:82%;height:82%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:10px solid #fff9ef;background:#fff;display:block;font-size:0}
@@ -228,11 +263,11 @@ function openRecipe(id){
 .recipe-image{height:190px;display:block;overflow:hidden;background:#e8eee6;font-size:0}
 .recipe-image .food-photo{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
 .recipe-card:hover .food-photo{transform:scale(1.06)}
-.recipe-image .tag{z-index:1}
+.recipe-image .tag{z-index:1}.edit-photo-btn{position:absolute;left:10px;bottom:10px;z-index:2;border:1px solid #ffffffd9;background:#ffffffed;color:#176b4d;border-radius:9px;padding:6px 9px;font-size:.72rem;font-weight:800;box-shadow:0 3px 10px #00000012}.edit-photo-btn:hover{background:#176b4d;color:#fff}.image-edit-modal{width:min(520px,100%)}.image-edit-preview{width:100%;height:230px;object-fit:cover;border-radius:14px;background:#eef3ec;border:1px solid var(--line)}.image-edit-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
 .recipe-detail-hero{grid-template-columns:240px 1fr;min-height:250px;background:#e9f1e8}
 .detail-food{height:190px;overflow:hidden;background:#fff;border-radius:20px;box-shadow:0 12px 28px #1c38221a}
 .detail-food img{width:100%;height:100%;object-fit:cover;display:block}
-@media(max-width:680px){.recipe-image{height:145px}.recipe-detail-hero{grid-template-columns:100px 1fr;min-height:0}.detail-food{height:100px}}
+@media(max-width:680px){.edit-photo-btn{font-size:.68rem;padding:5px 7px}.image-edit-preview{height:190px}.recipe-image{height:145px}.recipe-detail-hero{grid-template-columns:100px 1fr;min-height:0}.detail-food{height:100px}}
 </style></head><body><h1>${escapeHTML(r.name)}</h1><p>${escapeHTML(r.desc||'')}</p><p>Waktu: ${r.time} menit • Porsi: ${Math.round((r.servings||2)*servingScale)}</p><h2>Bahan-bahan</h2><ul>${r.ingredients.map(i=>`<li>${escapeHTML(scaleIngredient(i,servingScale))}</li>`).join('')}</ul><h2>Cara membuat</h2><ol>${r.steps.map(i=>`<li>${escapeHTML(i)}</li>`).join('')}</ol></body></html>`);w.document.close();w.print()};
   $('servingMinus').onclick=()=>{servingScale=Math.max(.5,servingScale-.5);renderDetail()};$('servingPlus').onclick=()=>{servingScale=Math.min(5,servingScale+.5);renderDetail()};
   const ingChecks=[...document.querySelectorAll('.ingredient-check')],stepChecks=[...document.querySelectorAll('.step-check')];
@@ -245,20 +280,56 @@ function scaleIngredient(text,scale){if(scale===1)return text;return text.replac
 function toggleFavorite(id){let f=getFavorites();f=f.includes(id)?f.filter(x=>x!==id):[...f,id];setFavorites(f);renderRecipes();if(activeRecipe&&activeRecipe.id===id&&$("recipeModal").classList.contains("show"))$("modalFav").textContent=f.includes(id)?"♥ Hapus favorit":"♡ Simpan favorit";showToast(f.includes(id)?"Ditambahkan ke favorit ❤️":"Dihapus dari favorit");}
 function openAdd(){ $("addModal").classList.add("show");}
 function closeModals(){ $("recipeModal").classList.remove("show");$("addModal").classList.remove("show");}
-document.addEventListener("click",e=>{const f=e.target.closest("[data-fav]");if(f){e.stopPropagation();toggleFavorite(Number(f.dataset.fav));return}const o=e.target.closest("[data-open]");if(o){openRecipe(o.dataset.open);return}if(e.target.id==="resetSearch"){searchTerm="";$("searchInput").value="";currentCategory="Semua";document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c.dataset.category==="Semua"));renderRecipes()}});
+ let editingPhotoRecipeId=null, selectedEditedPhoto="";
+ function openImageEditor(id){
+  const recipe=recipes.find(r=>String(r.id)===String(id));
+  if(!recipe)return;
+  editingPhotoRecipeId=recipe.id;selectedEditedPhoto="";
+  $("imageEditRecipeName").textContent="Resep: "+recipe.name;
+  $("imageEditPreview").src=photoFor(recipe);
+  $("editImageFile").value="";
+  $("imageEditModal").classList.add("show");
+ }
+ function closeImageEditor(){
+  $("imageEditModal").classList.remove("show");
+  editingPhotoRecipeId=null;selectedEditedPhoto="";
+ }
+ $("editImageFile").addEventListener("change",async e=>{
+  const file=e.target.files[0];if(!file)return;
+  if(!file.type.match(/^image\/(png|jpeg|webp)$/)){showToast("Pilih gambar JPG, PNG, atau WebP.");e.target.value="";return}
+  if(file.size>8*1024*1024){showToast("Ukuran foto maksimal 8 MB.");e.target.value="";return}
+  try{selectedEditedPhoto=await compressImage(file);$("imageEditPreview").src=selectedEditedPhoto}
+  catch(err){showToast("Foto gagal dibaca. Coba file lain.");}
+ });
+ $("saveRecipeImage").addEventListener("click",()=>{
+  if(!editingPhotoRecipeId||!selectedEditedPhoto){showToast("Pilih foto baru terlebih dahulu.");return}
+  const savedRecipeId=editingPhotoRecipeId;
+  const overrides=getRecipeImageOverrides();
+  overrides[String(savedRecipeId)]=selectedEditedPhoto;
+  try{localStorage.setItem("dapur_recipe_images",JSON.stringify(overrides))}
+  catch(err){showToast("Penyimpanan browser penuh. Coba foto dengan ukuran lebih kecil.");return}
+  closeImageEditor();renderRecipes();
+  if(activeRecipe&&String(activeRecipe.id)===String(savedRecipeId))renderDetail();
+  showToast("Foto resep berhasil diperbarui!");
+ });
+ $("closeImageEdit").onclick=closeImageEditor;
+ $("cancelImageEdit").onclick=closeImageEditor;
+ $("imageEditModal").addEventListener("click",e=>{if(e.target===$("imageEditModal"))closeImageEditor()});
+
+document.addEventListener("click",e=>{const editPhoto=e.target.closest("[data-edit-photo]");if(editPhoto){e.stopPropagation();openImageEditor(editPhoto.dataset.editPhoto);return}const f=e.target.closest("[data-fav]");if(f){e.stopPropagation();toggleFavorite(Number(f.dataset.fav));return}const o=e.target.closest("[data-open]");if(o){openRecipe(o.dataset.open);return}if(e.target.id==="resetSearch"){searchTerm="";$("searchInput").value="";currentCategory="Semua";document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c.dataset.category==="Semua"));renderRecipes()}});
 $("categories").addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(!b)return;currentCategory=b.dataset.category;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===b));renderRecipes()});
 $("heroSearch").addEventListener("submit",e=>{e.preventDefault();searchTerm=$("searchInput").value.trim();currentCategory="Semua";document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c.dataset.category==="Semua"));renderRecipes();$("resep").scrollIntoView({behavior:"smooth"})});
 $("showAll").onclick=()=>{searchTerm="";$("searchInput").value="";currentCategory="Semua";document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c.dataset.category==="Semua"));renderRecipes()};
 $("addRecipeTop").onclick=openAdd;$("mobileMenu").onclick=()=>{const nav=document.querySelector(".navlinks");const visible=nav.style.display==="flex";nav.style.display=visible?"none":"flex";if(!visible){nav.style.position="absolute";nav.style.top="65px";nav.style.left="0";nav.style.right="0";nav.style.padding="18px";nav.style.background="var(--card)";nav.style.flexDirection="column";nav.style.boxShadow="var(--shadow)"}};
 $("closeModal").onclick=closeModals;$("closeAdd").onclick=closeModals;
 document.querySelectorAll(".modal-backdrop").forEach(b=>b.addEventListener("click",e=>{if(e.target===b)closeModals()}));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModals()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModals();closeImageEditor()}});
 let selectedRecipeImage="";
 $("newImageFile").addEventListener("change",async e=>{const file=e.target.files[0];if(!file)return;if(!file.type.startsWith("image/")){showToast("Pilih file gambar yang valid.");e.target.value="";return}if(file.size>8*1024*1024){showToast("Ukuran foto maksimal 8 MB.");e.target.value="";return}try{selectedRecipeImage=await compressImage(file);$("newImagePreview").src=selectedRecipeImage;$("newImagePreview").hidden=false}catch(err){showToast("Foto gagal dibaca. Coba file lain.")}});
 function compressImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const scale=Math.min(1,1000/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.78))};img.src=reader.result};reader.readAsDataURL(file)})}
 $("addRecipeForm").addEventListener("submit",e=>{e.preventDefault();const custom=JSON.parse(localStorage.getItem("dapur_custom")||"[]");const r={id:Date.now(),name:$("newName").value.trim(),category:$("newCategory").value,image:selectedRecipeImage,time:Number($("newTime").value)||25,servings:2,rating:"Baru",desc:$("newDesc").value.trim()||"Resep buatan sendiri.",ingredients:$("newIngredients").value.split(",").map(x=>x.trim()).filter(Boolean),steps:$("newSteps").value.split("\n").map(x=>x.trim()).filter(Boolean)};if(!r.ingredients.length||!r.steps.length||!selectedRecipeImage){showToast("Lengkapi bahan, langkah, dan foto masakan.");return}custom.push(r);try{localStorage.setItem("dapur_custom",JSON.stringify(custom))}catch(err){showToast("Penyimpanan browser penuh. Untuk publik, hubungkan Supabase Storage.");return}loadUserData();closeModals();$("addRecipeForm").reset();selectedRecipeImage="";$("newImagePreview").hidden=true;renderRecipes();renderPlanner();showToast("Resep dan foto berhasil disimpan di perangkat ini!")});
 $("makeList").onclick=makeShoppingList;
-$("clearPlan").onclick=()=>{if(confirm("Reset semua menu mingguan?")){localStorage.removeItem("dapur_plan");renderPlanner();$("shoppingList").innerHTML='<li style="color:var(--muted)">Belum ada bahan. Yuk, rencanakan menu!</li>';$("shoppingSub").textContent="Pilih menu terlebih dahulu untuk menyusun belanjaan.";showToast("Menu mingguan direset.")}};
+$("clearPlan").onclick=()=>{if(confirm("Reset semua menu mingguan?")){localStorage.removeItem("dapur_plan_dates");localStorage.removeItem("dapur_plan");renderPlanner();$("shoppingList").innerHTML='<li style="color:var(--muted)">Belum ada bahan. Yuk, rencanakan menu!</li>';$("shoppingSub").textContent="Pilih menu terlebih dahulu untuk menyusun belanjaan.";showToast("Menu mingguan direset.")}};
 $("copyList").onclick=async()=>{const lines=[...document.querySelectorAll("#shoppingList label")].map(x=>"□ "+x.textContent);if(!lines.length){showToast("Buat daftar belanja terlebih dahulu.");return}try{await navigator.clipboard.writeText("DAFTAR BELANJA DAPURKITA\n"+lines.join("\n"));showToast("Daftar belanja disalin!")}catch(e){showToast("Fitur salin tidak tersedia di browser ini.")}};
 $("printList").onclick=()=>window.print();
 $("themeBtn").onclick=()=>{document.body.classList.toggle("dark");const dark=document.body.classList.contains("dark");localStorage.setItem("dapur_dark",dark?"1":"0");$("themeBtn").textContent=dark?"☀":"☾"};
@@ -269,10 +340,10 @@ function showAuthChoices(){ $('authChoices').hidden=false; $('authForm').hidden=
 function openEmailAuth(){authMethod='email';otpPending=false;$('authChoices').hidden=true;$('authForm').hidden=false;$('authTitle').textContent='Lanjutkan dengan email';$('authSubtitle').textContent='Masukkan email aktif. Kami akan mengirim kode OTP.';$('identityLabel').textContent='Alamat email';$('authEmail').type='email';$('authEmail').placeholder='nama@email.com';$('authEmail').autocomplete='email';$('authOtp').inputMode='numeric';$('authOtp').value='';$('otpWrap').hidden=true;$('authOtp').required=false;$('authNameWrap').hidden=false;$('authName').required=false;$('authSubmit').textContent='Kirim kode OTP →';}
 function finishLogin(user){localStorage.setItem('dapur_session',JSON.stringify(user));document.body.classList.add('authenticated');$('authScreen').classList.add('hidden');$('userPill').textContent='👤 '+(user.name||user.email?.split('@')[0]||user.phone||'Pengguna');}
 $('emailChoice').addEventListener('click',openEmailAuth);$('authBack').addEventListener('click',showAuthChoices);
-async function oauth(provider){if(!supabaseClient){showToast('Isi URL dan Publishable/anon key Supabase terlebih dahulu.');return}try{const {error}=await supabaseClient.auth.signInWithOAuth({provider,options:{redirectTo:location.href}});if(error)throw error}catch(e){showToast(e.message||'Login provider belum tersedia.')} }
+async function oauth(provider){if(!supabaseClient){showToast('Koneksi Supabase belum siap. Periksa URL dan Publishable Key.');return}try{const {error}=await supabaseClient.auth.signInWithOAuth({provider,options:{redirectTo:location.href}});if(error)throw error}catch(e){showToast(e.message||'Login provider belum tersedia.')} }
 $('googleAuth').addEventListener('click',()=>oauth('google'));$('appleAuth').addEventListener('click',()=>oauth('apple'));
 $('phoneAuth').addEventListener('click',()=>{authMethod='phone';otpPending=false;$('authChoices').hidden=true;$('authForm').hidden=false;$('authTitle').textContent='Masuk dengan nomor telepon';$('authSubtitle').textContent='Masukkan nomor dengan kode negara, misalnya +62812…';$('identityLabel').textContent='Nomor telepon';$('authEmail').type='tel';$('authEmail').placeholder='+6281234567890';$('authEmail').autocomplete='tel';$('authNameWrap').hidden=true;$('authName').required=false;$('otpWrap').hidden=true;$('authOtp').required=false;$('authSubmit').textContent='Kirim kode OTP →';});
-$('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!supabaseClient){showToast('Koneksi Supabase belum diatur pada file website.');return}const identity=$('authEmail').value.trim(),name=$('authName').value.trim();try{
+$('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!supabaseClient){showToast('Koneksi Supabase belum siap. Periksa konfigurasi URL dan Publishable Key.');return}const identity=$('authEmail').value.trim(),name=$('authName').value.trim();try{
  if(!otpPending){if(authMethod==='email'){if(!identity.includes('@')){showToast('Masukkan alamat email yang valid.');return}const {error}=await supabaseClient.auth.signInWithOtp({email:identity,options:{shouldCreateUser:true,data:name?{full_name:name}:{}}});if(error)throw error;}else{if(!identity.startsWith('+')){showToast('Gunakan format nomor internasional, contoh +62812…');return}const {error}=await supabaseClient.auth.signInWithOtp({phone:identity});if(error)throw error;}
  otpPending=true;$('otpWrap').hidden=false;$('authOtp').required=true;$('authSubmit').textContent='Verifikasi kode OTP';$('authSubtitle').textContent='Kode OTP telah dikirim. Periksa email atau SMS kamu.';showToast('Kode OTP berhasil diminta.');return;
  }
@@ -280,7 +351,9 @@ $('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!supabas
  }catch(err){showToast(err.message||'Autentikasi gagal. Periksa kembali data kamu.')}});
 $('logoutBtn').addEventListener('click',async()=>{if(supabaseClient)await supabaseClient.auth.signOut();localStorage.removeItem('dapur_session');document.body.classList.remove('authenticated');$('authScreen').classList.remove('hidden');showAuthChoices()});
 if(supabaseClient){supabaseClient.auth.getSession().then(({data})=>{const u=data.session?.user;if(u)finishLogin({email:u.email,name:u.user_metadata?.full_name||u.email.split('@')[0]})})}
-loadUserData();renderRecipes();renderPlanner();
+loadUserData();
+if(!localStorage.getItem("dapur_plan_dates")&&localStorage.getItem("dapur_plan")){try{const legacy=JSON.parse(localStorage.getItem("dapur_plan")||"{}"),migrated={},ds=weekDates();ds.forEach((d,i)=>{const old=legacy[dayNamesLong[i]];if(old&&(old.main||old.extra))migrated[dateKey(d)]=old});localStorage.setItem("dapur_plan_dates",JSON.stringify(migrated))}catch(e){}}
+renderRecipes();renderPlanner();updateLiveClock();$("footerYear").textContent=jakartaNow().getFullYear();
 </script>
 </body>
 </html>
